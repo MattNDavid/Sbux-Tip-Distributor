@@ -12,6 +12,13 @@ import java.io.*;
  * and that value is subtracted from their earned tips value to create a new "remaining earned tips" value.
  * This is repeated until all tips are distributed.
  */
+/**
+ * TODO
+ * File output
+ * .exe (make launchable)
+ * improve regular mode (not test mode)
+ * add other distribution types
+ */
 public class TipDistributor {
     private Partner[] partners = new Partner[0];
     private double totalTips;
