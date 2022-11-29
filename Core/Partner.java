@@ -1,3 +1,6 @@
+/**
+ * Class containing all necessary data for an individual employee.
+ */
 public class Partner implements Comparable{
     private String name;
     private double hrs;
@@ -9,7 +12,6 @@ public class Partner implements Comparable{
     private int quarterRollsAndTens;
     private int ones;
     private int twenties;
-    //private int fives;
 
     public Partner(String name) {
         this.name = name;

@@ -1,3 +1,4 @@
+//Basic test file
 public class SbuxTipTester {
     public static void main(String[] args) {
         Partner[] PLPartners = {new Partner("Adkins, Emma", 8.1),
@@ -22,12 +23,6 @@ public class SbuxTipTester {
                                 new Partner("Sakamoto, Carly", 16.75),
                                 new Partner("Ulrich, Chris", 22.98),
                                 new Partner("Wieberneit, Kate", 4.05),};
-        TipDistributor base = new TipDistributor(PLPartners, new int[] {
-            2, //pennies
-            96,//ones
-            1,//twos
-            8,//fives
-            3,//tens
-            1});//twenties
+        TipDistributor base = new TipDistributor(PLPartners, new int[] {2, 96, 1, 8, 3, 1});
     }
 }
