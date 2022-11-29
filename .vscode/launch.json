@@ -1,0 +1,12 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch SbuxTipTester",
+            "request": "launch",
+            "mainClass": "SbuxTipTester",
+            "projectName": "Sbux-Tip-Distributor_bfdb299a"
+        },
+        {}
+    ]
+}
