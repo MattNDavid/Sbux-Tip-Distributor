@@ -1,9 +1,18 @@
 import java.util.*;
-
+/**
+ * Distributes tips for all employees of a starbucks location. 
+ * Base logic:
+ * Each partners earned tips value is found by (employeeHrs * (totalTips/totalHrs))
+ * The partner with the largest earned tip value is found and given the highest available denomination,
+ * 
+ * (IF no partner has earned enough tips to receive the highest denomination in tips,
+ * the system will request that you split that bill into the next largest denomination.)
+ * 
+ * and that value is subtracted from their earned tips value to create a new "remaining earned tips" value.
+ * This is repeated until all tips are distributed.
+ */
 public class TipDistributor {
     private Partner[] partners = new Partner[0];
-    // private double[] hrsWorked;
-    // private double[] tipsEarned;
     private double totalTips;
     private double totalHrs;
     private double tipsPerHr;
@@ -13,9 +22,10 @@ public class TipDistributor {
     private int quarterRolls; //and tens
     private int ones;
     private int twenties;
-    //private int fives;
-    // private int tens;
 
+    /**
+     * General use constructor. Takes all data through scanners, then loads distribution.
+     */
     public TipDistributor() {
         getPartnerNames();
         getPartnerHrs();
@@ -23,6 +33,19 @@ public class TipDistributor {
         calculate();
         dataPrinter();
     }
+    /**
+     * Constructor for testing. Takes all class level variable values as parameters,
+     * then immediately generates distribution.
+     * @param partners
+     * Array of partner(employee) objects containing all desired employees and their hours worked.
+     * @param valSet
+     * [0]: # of pennies
+     * [1]: # of ones
+     * [2]: # of twos
+     * [3]: # of fives
+     * [4]: # of tens
+     * [5]: # of twenties
+     */
     public TipDistributor(Partner[] partners, int[] valSet) {
         for(int i = 0; i < partners.length; i++) {
             addPartner(partners[i]);
@@ -38,6 +61,11 @@ public class TipDistributor {
         calculate();
         dataPrinter();
     }
+    /**
+     * Deprecated testing constructor, takes only an array of partners, and requires you to input cash values via scanner
+     * @param partners
+     * Array of partner(employee) objects containing all desired employees and their hours worked.
+     */
     public TipDistributor(Partner[] partners) {
         for(int i = 0; i < partners.length; i++) {
             addPartner(partners[i]);
@@ -54,16 +82,13 @@ public class TipDistributor {
     }
     private void calculate() {
         tipsPerHr = totalTips / totalHrs;
-        // this.tipsEarned = new double[hrsWorked.length];
         for (int i = 0; i < partners.length; i++) {
             partners[i].setTipsEarned(partners[i].getHrs() * tipsPerHr);
             partners[i].setRemainder(partners[i].getHrs() * tipsPerHr);
         }
-
         distributeTwenties();
         distributeQuartersAndTens();
         distributeFivesAndDimes();
-        //distributeDimes();
         distributeNickels();
         distributeOnes();
         distributePennies();
@@ -135,8 +160,6 @@ public class TipDistributor {
             System.out.println("Please split " + quarterRolls + " quarter rolls and tens into " + quarterRolls*2 + " fives or dime rolls.");
             dimeRollsAndFives += quarterRolls * 2;
             quarterRolls = 0;
-            /*System.out.println("Continue?");
-            Scanner a = new Scanner(System.in);*/
         }
         distributeQuartersAndTens();
     }
@@ -158,8 +181,6 @@ public class TipDistributor {
             System.out.println("Please split " + dimeRollsAndFives + " dime rolls and/or fives into " + dimeRollsAndFives*5 + " ones");
             ones += dimeRollsAndFives * 5;
             dimeRollsAndFives = 0;
-            /*System.out.println("Continue?");
-            Scanner a = new Scanner(System.in);*/
         }
         distributeFivesAndDimes();
     }
@@ -181,8 +202,6 @@ public class TipDistributor {
             System.out.println("Please split " + nickelRolls + " nickel rolls into " + nickelRolls*2 + " ones");
             ones += nickelRolls * 2;
             nickelRolls = 0;
-            /*System.out.println("Continue?");
-            Scanner a = new Scanner(System.in);*/
         }
         distributeNickels();
     }
@@ -203,9 +222,6 @@ public class TipDistributor {
     }
 
     private void getTipInfo() {
-        /*System.out.println("Please input total amount of tips in $.");
-        Scanner getTotalTips = new Scanner(System.in);
-        this.totalTips = getTotalTips.nextDouble();*/
 
         System.out.println("Please input number of penny rolls.");
         Scanner getPennies = new Scanner(System.in);
@@ -232,13 +248,6 @@ public class TipDistributor {
         this.twenties = getTwenties.nextInt();
 
         this.totalTips = twenties * 20 + quarterRolls * 10 + dimeRollsAndFives * 5 + nickelRolls * 2 + ones + pennyRolls *.5;
-        /*System.out.println("Please input number of fives.");
-        Scanner getFives = new Scanner(System.in);
-        this.fives = getFives.nextInt();*/
-
-        // System.out.println("Please input number of tens.");
-        // Scanner getTens = new Scanner(System.in);
-        // this.tens = getTens.nextInt();
     }
 
     private void getPartnerNames() {
@@ -257,7 +266,6 @@ public class TipDistributor {
     }
 
     private void getPartnerHrs() {
-        // hrsWorked = new double[partners.length];
         double totalHrs = 0;
         for (int i = 0; i < partners.length; i++) {
             System.out.println("Input " + partners[i].getName() + "'s hours.");
@@ -272,21 +280,19 @@ public class TipDistributor {
         for (int i = 0; i < partners.length; i++) {
             for (int j = i; j < partners.length; j++) {
                 if (partners[i]
-                        .compareTo /* Change this > to < to sort from greatest to least */ (partners[j]) > 0) {
+                        .compareTo(partners[j]) > 0) {
                     Partner temp = partners[i];
                     partners[i] = partners[j];
                     partners[j] = temp;
                 }
             }
         }
-        //System.out.println(Arrays.toString(partners));
     }
     private void dataPrinter() {
         System.out.println("Total hrs: " + totalHrs + "\nTotal tips: " + totalTips + "\nTips per hr: " + totalTips/totalHrs);
         for(int i = 0; i < partners.length; i++) {
             double pctOfTotalTips = (partners[i].getTwenties() * 20 + partners[i].getQuarterRollsAndTens() * 10 + partners[i].getDimeRollsAndFives() * 5 + partners[i].getNickelRolls() * 2 + partners[i].getOnes() + partners[i].getPennyRolls() *.5) / totalTips;
             
-            //double tipsRecieved = partners[i].getQuarterRollsAndTens() * 10 + partners[i].getDimeRollsAndFives() * 5 + partners[i].getNickelRolls() * 2 + partners[i].getOnes() + partners[i].getPennyRolls() *.5;
             System.out.println(partners[i] + "\n     Hours: " + partners[i].getHrs() + "\n     Pct of total hrs: " + partners[i].getHrs()/totalHrs + "\n     Pct of total tips: " + pctOfTotalTips + "\n     Twenties: " + partners[i].getTwenties() + "\n     Tens/Quarter Rolls: " + partners[i].getQuarterRollsAndTens() + "\n     Fives/Dime Rolls: " + partners[i].getDimeRollsAndFives() + "\n     Nickel Rolls: " + partners[i].getNickelRolls() + "\n     Ones: " + partners[i].getOnes() + "\n     Penny Rolls: " + partners[i].getPennyRolls());
             System.out.println("     Tips recieved: " + (partners[i].getTipsEarned() - partners[i].getRemainder()));
         }
@@ -301,13 +307,5 @@ public class TipDistributor {
         partners[partners.length - 1] = new Partner(partner);
         sortPartners();
     }
-
-    /*public double[] getHrsWorked() {
-        return hrsWorked;
-    }*/
-
-    /*public Partner[] getPartners() {
-        return partners;
-    }*/
 
 }
