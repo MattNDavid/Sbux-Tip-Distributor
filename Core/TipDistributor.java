@@ -1,4 +1,5 @@
 import java.util.*;
+import java.io.*;
 /**
  * Distributes tips for all employees of a starbucks location. 
  * Base logic:
@@ -130,16 +131,7 @@ public class TipDistributor {
         pennyRolls--;
 
 
-        distributePennies();/*
-        while(pennyRolls != 0) {
-            for(int i = 0; i < partners.length; i++) {
-                if(pennyRolls == 0)
-                    return;
-                partners[i].setPennyRolls(partners[i].getPennyRolls() + 1);
-                partners[i].setRemainder(partners[i].getRemainder() - .5);
-                pennyRolls--;
-            }
-        }*/
+        distributePennies();
     }
 
     private void distributeQuartersAndTens() {
