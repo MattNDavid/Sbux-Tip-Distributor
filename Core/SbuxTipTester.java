@@ -1,3 +1,4 @@
+//Basic test file
 public class SbuxTipTester {
     public static void main(String[] args) {
         Partner[] PLPartners = {new Partner("Adkins, Emma", 8.1),
