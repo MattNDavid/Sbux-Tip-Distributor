@@ -1,28 +1,29 @@
 //Basic test file
 public class SbuxTipTester {
     public static void main(String[] args) {
-        Partner[] PLPartners = {new Partner("Adkins, Emma", 8.1),
-                                new Partner("Allen, Max", 27.23),
-                                new Partner("Bothwell, Hayden", 36.73),
-                                //new Partner("Buhner, Carla", 0),
-                                new Partner("Burton, Kit", 19.38),
-                                new Partner("Caylor, May", 21.42),
-                                new Partner("Chavda, Ansh", 8.05),
-                                new Partner("David, Matt", 30.82),
-                                new Partner("Gerdes, Ellexa", 12.1),
-                                new Partner("Harris, Hallie", 4.1),
-                                new Partner("Hern, Pam", 31.6),
-                                new Partner("James, Sophie", 18.92),
-                                new Partner("Lamb, Lisa", 9.07),
-                                new Partner("Lamp, Elin", 21.27),
-                                //new Partner("Maloney Mana", 0),
-                                new Partner("Nelson, Rilie", 17.6),
-                                new Partner("Nelson, Sammy", 5.75),
-                                new Partner("Poulin, Deanna", 41.33),
-                                new Partner("Ryan, Lara", 22.68),
-                                new Partner("Sakamoto, Carly", 16.75),
-                                new Partner("Ulrich, Chris", 22.98),
-                                new Partner("Wieberneit, Kate", 4.05),};
-        TipDistributor base = new TipDistributor(PLPartners, new int[] {2, 96, 1, 8, 3, 1});
+        Partner[] PLPartners = {new Partner("Adkins, Emma", 12.08),
+                                new Partner("Allen, Max", 34.72),
+                                new Partner("Bothwell, Hayden", 6.48),
+                                new Partner("Buhner, Carla", 0),
+                                new Partner("Burton, Kit", 20.72),
+                                new Partner("Caylor, May", 21.28),
+                                new Partner("Chavda, Ansh", 16.63),
+                                new Partner("David, Matt", 28.15),
+                                new Partner("Frederick, Faith", 0),
+                                new Partner("Gerdes, Ellexa", 12.58),
+                                new Partner("Harris, Hallie", 1.5),
+                                new Partner("Hern, Pam", 29.85),
+                                new Partner("James, Sophie", 8.28),
+                                new Partner("Lamb, Lisa", 5.48),
+                                new Partner("Lamp, Elin", 16.15),
+                                new Partner("Maloney Mana", 0),
+                                new Partner("Nelson, Rilie", 19.63),
+                                new Partner("Nelson, Sammy", 0),
+                                new Partner("Poulin, Deanna", 32.05),
+                                new Partner("Ryan, Lara", 34.98),
+                                new Partner("Sakamoto, Carly", 16.38),
+                                new Partner("Ulrich, Chris", 18.63),
+                                /*new Partner("Wieberneit, Kate", 0)*/};
+        TipDistributor base = new TipDistributor(PLPartners, new int[] {2, 78, 1, 4, 2, 0});
     }
 }
