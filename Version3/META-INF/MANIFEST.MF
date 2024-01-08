@@ -1,0 +1,2 @@
+Manifest-Verson: 1.0
+Main-Class: SbuxTipDriver.class
